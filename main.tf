@@ -10,7 +10,7 @@ resource "aws_instance" "web" {
     Name = "HelloWorld"
   }
 
-  key_name  = "test3"
+  key_name  = var.key_name
   user_data = file("${path.module}/startup.sh")
   subnet_id = aws_subnet.my_subnet.id
 
