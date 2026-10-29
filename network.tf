@@ -14,9 +14,9 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "my_subnet" {
-  vpc_id            = aws_vpc.main.id
-  cidr_block        = "10.0.1.0/24"
-  availability_zone = "eu-central-1a"
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = "eu-central-1a"
   map_public_ip_on_launch = "true"
 
   tags = {
@@ -25,8 +25,8 @@ resource "aws_subnet" "my_subnet" {
 }
 
 resource "aws_route_table_association" "public-subnet-1-route-table-association" {
-  subnet_id           = aws_subnet.my_subnet.id
-  route_table_id      = aws_route_table.public-route-table.id
+  subnet_id      = aws_subnet.my_subnet.id
+  route_table_id = aws_route_table.public-route-table.id
 }
 
 resource "aws_route_table" "public-route-table" {
@@ -43,27 +43,27 @@ resource "aws_security_group" "allow_tls" {
   vpc_id      = aws_vpc.main.id
 
   ingress {
-    description      = "HTTP from VPC"
-    from_port        = 80
-    to_port          = 80
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    description = "HTTP from VPC"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    description      = "SSL from VPC"
-    from_port        = 22
-    to_port          = 22
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    description = "SSL from VPC"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    description      = "HTTPS from VPC"
-    from_port        = 443
-    to_port          = 443
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    description = "HTTPS from VPC"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
