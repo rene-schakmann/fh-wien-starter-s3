@@ -1,5 +1,9 @@
+data "aws_ssm_parameter" "al2023" {
+  name = "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64"
+}
+
 resource "aws_instance" "web" {
-  ami           = "ami-0e2031728ef69a466"
+  ami           = data.aws_ssm_parameter.al2023.value
   instance_type = "t3.micro"
 
   tags = {
